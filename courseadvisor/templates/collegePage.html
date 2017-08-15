@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ college.name }}</title>
+</head>
+<body>
+	<h1>{{ college.name}} </h1>
+	<h2>Majors</h2>
+	{% for major in majorList %}
+		<div>{{ major.name }}</div>
+	{% endfor %}
+	<h2>Courses</h2>
+	{% for course in courseList %}
+		<div>{{ course.courseNumber }}: {{ course.name }}</div>
+	{% endfor %}
+</body>
+</html>

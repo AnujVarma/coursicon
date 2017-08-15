@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>College Page</title>
+</head>
+<body>
+	{% for college in collegeList %}
+		<div>College: <a href="/colleges/{{ college.id }}">{{ college.name }}</a></div>
+	{% endfor %}
+</body>
+</html>
