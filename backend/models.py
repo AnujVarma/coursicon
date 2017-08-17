@@ -24,10 +24,6 @@ class OrReq(models.Model):
 	reqCourses = models.ManyToManyField("Course", related_name="orChildren")
 	course = models.ForeignKey("Course", related_name="orReqs")
 
-class AndReq(models.Model):
-	reqCourses = models.ManyToManyField("Course", related_name="andChildren")
-	course = models.ForeignKey("Course", related_name="andReqs")
-
 class Course(models.Model):
 	name = models.CharField(max_length=500)
 	depth = models.IntegerField(default=0)
@@ -35,6 +31,7 @@ class Course(models.Model):
 	majors = models.ManyToManyField(Major, related_name="courses")
 	courseNumber = models.CharField(max_length=128)
 	description = models.TextField(default="")
+	reqCourses = models.ManyToManyField("Course", related_name="andChildren", blank=True)
 
 	def __str__(self):
 		return self.college.name + ": " + self.name + ": " + str(self.depth)
