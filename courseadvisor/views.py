@@ -29,3 +29,7 @@ class CollegePage(View):
 			"majorList": majors
 		}
 		return render(request, "collegePage.html", context)
+
+class end_result(View):
+	def get(self, request):
+		return render(request, "end_result.html")
