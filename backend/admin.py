@@ -10,3 +10,4 @@ from backend.models import *
 admin.site.register(College)
 admin.site.register(Major)
 admin.site.register(Course)
+admin.site.register(CoursiconUser)

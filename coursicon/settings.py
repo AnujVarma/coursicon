@@ -51,6 +51,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTH_USER_MODEL = 'backend.CoursiconUser'
+
 ROOT_URLCONF = 'coursicon.urls'
 
 TEMPLATES = [

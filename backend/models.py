@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
@@ -29,3 +30,7 @@ class Course(models.Model):
 
 	def __str__(self):
 		return self.college.name + ": " + self.name + ": " + str(self.depth)
+
+class CoursiconUser(AbstractUser):
+	college = models.ForeignKey(College, related_name="students", blank=True, null=True)
+	
