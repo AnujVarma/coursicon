@@ -3,19 +3,16 @@ var mygraph = new dagreD3.graphlib.Graph()
   .setGraph({edgesep: 10, ranksep: 120, nodesep: 10})
   .setDefaultEdgeLabel(function() { return {}; });
 
-
-
-
 var nodes = {
   0: {
   	label: "1",
-  	children:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 27, 42],
+  	children:[1, 2, 3, 4, 5, 6, 7, 8, 9, 27, 42],
     description: "course"
   },
 
   1: {
   	label: "10",
-  	children:[8, 14, 23, 24, 25, 26, 27, 28, 29, 30],
+  	children:[8, 14, 23, 24, 25, 26, 28, 29, 30],
     description: "represents waiting for a connection request from any " +
                  "remote TCP and port."
   },
@@ -82,14 +79,6 @@ var nodes = {
                  "connection termination request previously sent to the remote " +
                  "TCP (which includes an acknowledgment of its connection " +
                  "termination request)."
-  },
-
-  10: {
-  	label: "51",
-  	children:[],
-    description: "represents waiting for enough time to pass to be " +
-                 "sure the remote TCP received the acknowledgment of its " +
-                 "connection termination request."
   },
   11: {
   	label: "78",
@@ -198,7 +187,7 @@ var nodes = {
   },
   27: {
   	label: "51",
-  	children:[18, 19, 20, 21],
+  	children:[18, 43],
     description: "represents waiting for a connection termination " +
                  "request acknowledgment from the remote TCP."
   },
@@ -216,7 +205,7 @@ var nodes = {
   },
   30: {
   	label: "50",
-  	children:[33, 34, 35, 36, 19, 20, 21],
+  	children:[33, 34, 35, 36, 43],
     description: "represents waiting for a connection termination " +
                  "request acknowledgment from the remote TCP."
   },
@@ -292,12 +281,19 @@ var nodes = {
     description: "represents waiting for a connection termination " +
                  "request acknowledgment from the remote TCP."
   },
+  43: {
+    label: "*",
+    children:[19, 20, 21],
+    description: "represents waiting for a connection termination " +
+                 "request acknowledgment from the remote TCP."
+  },
 };
 
 // Add states to the graph, set labels, and style
 Object.keys(nodes).forEach(function(node) {
   var value = nodes[node];
   value.rx = value.ry = 5;
+  value.ranksep= 200;
   mygraph.setNode(node, value);
   childrenlist = nodes[node].children
   for (i = 0, len = childrenlist.length; i < len; i++){
@@ -363,7 +359,6 @@ window.dagreD3.select = (function() {
       selected;
 
   function selector(id) {
-  	console.log(id);
     var node = mygraph.node(id),
       edge, selector;
     if (node) {
@@ -408,7 +403,6 @@ window.dagreD3.select = (function() {
 
 	// handle nodes/edges selection
     d3.select('svg').selectAll('.node, .edgePath, .edgeLabel').on('click', function(id) {
-    	console.log("Graph");
         dagreD3.select(id);
         d3.event.stopPropagation();
     });
@@ -416,6 +410,5 @@ window.dagreD3.select = (function() {
     // cancel selection
     d3.select(document).on('click', function() {
         dagreD3.select();
-        console.log("Document");
     });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

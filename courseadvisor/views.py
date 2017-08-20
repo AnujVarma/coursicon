@@ -33,3 +33,12 @@ class CollegePage(View):
 class end_result(View):
 	def get(self, request):
 		return render(request, "end_result.html")
+
+class Graph(View):
+	def get(self, request, collegeId, majorId):
+		college = College.objects.get(id=collegeId)
+		context = {
+			"college": college,
+			"majorId": majorId
+		}
+		return render(request, "graph.html", context)
