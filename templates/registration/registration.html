@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registration -{% endblock %}
+
+{% block signupActive %}active{% endblock %}
+
+{% block content %}
+<div class="main-container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Register for an account</h3>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">First Name</label>
+              <div class="col-sm-10">
+                <input required type="text" class="form-control" id="firstname" placeholder="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">Last Name</label>
+              <div class="col-sm-10">
+                <input required type="text" class="form-control" id="lastname" placeholder="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
+              <div class="col-sm-10">
+                <input required type="text" class="form-control" id="id_username" placeholder="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input required type="email" class="form-control" id="email" placeholder="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+              <div class="col-sm-10">
+                <input required type="password" class="form-control" id="password1" placeholder="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">Confirm Password</label>
+              <div class="col-sm-10">
+                <input required type="password" class="form-control" id="password2" placeholder="">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Signup</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  background-color: white;
+  color: #337ab7;
+}
+
+.main-container {
+  padding-top: 25px;
+}

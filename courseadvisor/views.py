@@ -8,6 +8,10 @@ from backend.models import *
 
 # Create your views here.
 
+class RegistrationView(View):
+	def get(self, request):
+		return render(request, "registration/registration.html")
+
 class HomePage(View):
 	def get(self, request):
 		college = College.objects.get(id=1)
