@@ -10,7 +10,12 @@ from backend.models import *
 
 class HomePage(View):
 	def get(self, request):
-		return render(request, "index.html")
+		college = College.objects.get(id=1)
+		context = {
+			"college": college,
+			"majorId": 1
+		}
+		return render(request, "index.html", context)
 
 class AllCollegesPage(View):
 	def get(self, request):

@@ -309,8 +309,7 @@ var	margin = {top: 30, right: 20, bottom: 30, left: 20},
 // Set up an SVG group so that we can translate the final graph.
 var svg = d3.select("svg")
 		.attr("width", width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom),
-	inner = svg.select("g");
+	inner = svg.append("g");
 
 var zoom = d3.behavior.zoom().on("zoom", function() {
       inner.attr("transform", "translate(" + d3.event.translate + ")" +
@@ -325,21 +324,6 @@ var render = new dagreD3.render();
 // Run the renderer. This is what draws the final graph.
 render(inner, mygraph);
 
-//////////////////////////////////////////////////////TOOLTIP AREA///////////////////////////////////////////////
-
-var description = "This is a great CS class to take!"
-
-// Simple function to style the tooltip for the given node.
-var styleTooltip = function(name, description) {
-  return "<p class='name'>" + name + "</p><p class='description'>" + description + "</p>";
-};
-
-inner.selectAll("mygraph.node")
-  .attr("title", function(v) { return styleTooltip(v, description) })
-  .each(function(v) { $(this).tipsy({ gravity: "w", opacity: 1, html: true }); });
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 //////////////////////////////////////////////////////Center the graph////////////////////////////////////////////////
 
 var initialScale = 0.75;
@@ -347,7 +331,7 @@ zoom
   .translate([(svg.attr("width") - mygraph.graph().width * initialScale) / 2, 20])
   .scale(initialScale)
   .event(svg);
-svg.attr('height', mygraph.graph().height * initialScale + 40);
+// svg.attr('height', mygraph.graph().height * initialScale + 40);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -402,9 +386,10 @@ window.dagreD3.select = (function() {
 })();
 
 	// handle nodes/edges selection
-    d3.select('svg').selectAll('.node, .edgePath, .edgeLabel').on('click', function(id) {
-        dagreD3.select(id);
-        d3.event.stopPropagation();
+    d3.select('svg').selectAll('.node').on('click', function(id) {
+      console.log(id);
+      dagreD3.select(id);
+      d3.event.stopPropagation();
     });
 
     // cancel selection

@@ -1,0 +1,54 @@
+html{
+  height:100%
+}
+body{
+  height:100%;
+  overflow: hidden;
+}
+
+#bs-example-navbar-collapse-1 > ul > li:nth-child(1) > a{
+  color: white;
+}
+
+#bs-example-navbar-collapse-1 > ul > li.dropdown > a{
+  color: white;
+}
+
+.intro{
+  height:calc(100% - 50px)
+}
+
+.left{
+  display : flex;
+  flex-direction: column;
+  align-items : center;
+  background-color:#FFF;
+  height : 100%;
+  color : #000000;
+}
+.right{
+  display : flex;
+  flex-direction: column;
+  justify-content : center;
+  align-items : center;
+  background-color:#FFF;
+  height : 100%;
+  color : #000000;
+  box-shadow: -3px 0px 3px -1px #aaaaaa;
+}
+@media (max-width: 1200px) { 
+  .left{
+    height:50%
+  }
+  .right{
+    height:50%
+  }
+}
+#div1, #div2 {
+    float: left;
+    width: 100px;
+    height: 35px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
