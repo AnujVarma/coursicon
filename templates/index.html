@@ -1,6 +1,85 @@
 <html>
-	<head></head>
+	<head>	
+	<title>Home Page</title>
+
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<!--v0.4.10 latest version-->
+	<script src="http://cpettitt.github.io/project/dagre-d3/v0.4.17/dagre-d3.min.js"></script>
+	
+	{% load static %}
+
+	<script type = "text/javascript" src="{% static 'js/index.js' %}" ></script>
+	<link rel="stylesheet" type = "text/css" href="{% static 'css/index.css' %}"/>
+	<link rel="stylesheet" type = "text/css" href="{% static 'css/end_result.css' %}"/>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></head>
+	<script src="http://wzrd.in/standalone/uuid@latest"></script>
+
+	</head>
 	<body>
-		Go to the colleges page <a href="/colleges">here</a>
+		<nav class="navbar navbar-default" style="margin-bottom: 0px;background-color: rgba(0, 191, 255, 1);">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" style = "color:white;" href="#">Coursicon</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#">About</a></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign-up <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Action</a></li>
+		            <li><a href="#">Another action</a></li>
+		            <li><a href="#">Something else here</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li><a href="#">Separated link</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
+		 <section class="intro">
+		    <row>
+		        <div class="col-lg-6 col-sm-12 left">
+		            <div>
+		            	<svg height="100%">
+		            	</svg>
+		            </div>
+		        </div>
+		        <div class="col-lg-6 col-sm-12 right">
+		            <p>
+						<h2>Your Courses for the Year</h2>
+						<ul id = "courses">
+						</ul>
+						<!--
+						<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+						  <img src="{% static 'gif/Small.gif' %}" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
+						</div>
+
+						<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+						-->
+		            </p>
+		        </div>
+	      </row>
+	    </section>
+	    <!--
+	    Go to the colleges page <a href="/colleges">here</a>
+	    -->
+	    <div id="major-id" data-id="{{ majorId }}" style="display:none"></div>
+	    <script type = "text/javascript" src="{% static 'js/graph.js' %}" ></script>
 	</body>
 </html>

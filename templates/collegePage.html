@@ -7,7 +7,7 @@
 	<h1>{{ college.name}} </h1>
 	<h2>Majors</h2>
 	{% for major in majorList %}
-		<div>{{ major.name }}</div>
+		<a href="/colleges/{{ college.id }}/{{major.id}}"> {{major.name}}</a>
 	{% endfor %}
 	<h2>Courses</h2>
 	{% for course in courseList %}

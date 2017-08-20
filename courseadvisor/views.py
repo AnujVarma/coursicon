@@ -10,7 +10,12 @@ from backend.models import *
 
 class HomePage(View):
 	def get(self, request):
-		return render(request, "index.html")
+		college = College.objects.get(id=1)
+		context = {
+			"college": college,
+			"majorId": 1
+		}
+		return render(request, "index.html", context)
 
 class AllCollegesPage(View):
 	def get(self, request):
@@ -33,3 +38,12 @@ class CollegePage(View):
 class end_result(View):
 	def get(self, request):
 		return render(request, "end_result.html")
+
+class Graph(View):
+	def get(self, request, collegeId, majorId):
+		college = College.objects.get(id=collegeId)
+		context = {
+			"college": college,
+			"majorId": majorId
+		}
+		return render(request, "graph.html", context)
