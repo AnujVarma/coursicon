@@ -11,10 +11,16 @@ from backend.models import *
 class HomePage(View):
 	def get(self, request):
 		college = College.objects.get(id=1)
+		termList = ["Fall Term 2017", "Winter Term 2017", "Spring Term 2017", "Summer Term 2017",
+			"Fall Term 2018", "Winter Term 2018", "Spring Term 2018", "Summer Term 2018",
+			"Fall Term 2019", "Winter Term 2019", "Spring Term 2019", "Summer Term 2019",
+			"Fall Term 2020", "Winter Term 2020", "Spring Term 2020", "Summer Term 2020"]
 		context = {
 			"college": college,
-			"majorId": 1
+			"majorId": 1,
+			"termList": termList
 		}
+
 		return render(request, "index.html", context)
 
 class AllCollegesPage(View):
