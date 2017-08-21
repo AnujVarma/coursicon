@@ -3,6 +3,10 @@
 
 {% block title %}Registration -{% endblock %}
 
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/registration.css' %}"/>
+{% endblock %}
+
 {% block signupActive %}active{% endblock %}
 
 {% block content %}
@@ -14,42 +18,51 @@
           <h3 class="panel-title">Register for an account</h3>
         </div>
         <div class="panel-body">
-          <form class="form-horizontal" method="post" action="{% url 'login' %}">
+          <form class="form-horizontal" method="post" action="/register/">
             {% csrf_token %}
+            {% if error %}
+              <div class="error-msg">
+                {% if error == 'passwordMismatch' %}
+                  Your passwords did not match. Please try again.
+                {% elif error == 'usernameExists' %}
+                  This username is taken. Please try another one.
+                {% endif %}
+              </div>
+            {% endif %}
             <div class="form-group">
               <label for="" class="col-sm-2 control-label">First Name</label>
               <div class="col-sm-10">
-                <input required type="text" class="form-control" id="firstname" placeholder="">
+                <input required type="text" class="form-control" name="firstname" placeholder="">
               </div>
             </div>
             <div class="form-group">
               <label for="" class="col-sm-2 control-label">Last Name</label>
               <div class="col-sm-10">
-                <input required type="text" class="form-control" id="lastname" placeholder="">
+                <input required type="text" class="form-control" name="lastname" placeholder="">
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group {% if error == 'usernameExists' %}has-error{% endif %}">
               <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
               <div class="col-sm-10">
-                <input required type="text" class="form-control" id="id_username" placeholder="">
+                <input required type="text" class="form-control" name="username" placeholder="">
               </div>
             </div>
             <div class="form-group">
               <label for="" class="col-sm-2 control-label">Email</label>
               <div class="col-sm-10">
-                <input required type="email" class="form-control" id="email" placeholder="">
+                <input required type="email" class="form-control" name="email" placeholder="">
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group {% if error == 'passwordMismatch' %}has-error{% endif %}">
               <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
               <div class="col-sm-10">
-                <input required type="password" class="form-control" id="password1" placeholder="">
+                <input required type="password" class="form-control" name="password1" placeholder="">
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group {% if error == 'passwordMismatch' %}has-error{% endif %}">
               <label for="inputPassword3" class="col-sm-2 control-label">Confirm Password</label>
               <div class="col-sm-10">
-                <input required type="password" class="form-control" id="password2" placeholder="">
+                <input required type="password" class="form-control" name="password2" placeholder="">
               </div>
             </div>
             <div class="form-group">

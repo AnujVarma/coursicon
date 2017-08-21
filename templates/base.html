@@ -35,12 +35,21 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item {% block loginActive %}{% endblock %}">
-              <a class="nav-link" href="/accounts/login">Login</a>
-            </li>
-            <li class="nav-item {% block signupActive %}{% endblock %} ">
-              <a class="nav-link" href="/register">Signup</a>
-            </li>
+						{% if user.is_authenticated %}
+							<li class="nav-item {% block profileActive %}{% endblock %}">
+								<a class="nav-link" href="/profile">{{ user }}</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/accounts/logout">Logout</a>
+							</li>
+						{% else %}
+	            <li class="nav-item {% block loginActive %}{% endblock %}">
+	              <a class="nav-link" href="/accounts/login">Login</a>
+	            </li>
+	            <li class="nav-item {% block signupActive %}{% endblock %} ">
+	              <a class="nav-link" href="/register">Signup</a>
+	            </li>
+						{% endif %}
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
