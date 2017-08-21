@@ -28,9 +28,8 @@ body{
 }
 .right{
   display : flex;
+  overflow-y: scroll;
   flex-direction: column;
-  justify-content : center;
-  align-items : center;
   background-color:#FFF;
   height : 100%;
   color : #000000;
@@ -51,4 +50,12 @@ body{
     margin: 10px;
     padding: 10px;
     border: 1px solid black;
+}
+
+.term-panel{
+  margin: auto;
+}
+
+.term-panel:first-child {
+  margin-top: 20px
 }

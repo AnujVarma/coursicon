@@ -151,12 +151,14 @@ function onclickhandler(graph, data){
 	  }
 
 	})();
-	var $usercourses = $('#courses');
+	var $usercourses = $('.panel .panel-body');
 	// handle nodes/edges selection
     d3.select('svg').selectAll('.node').on('click', function(id) {
       course_index =  hashToKey[id]-1;
+      
       console.log(data.courses[course_index].name, data.courses[course_index].description);
-      $usercourses.append('<li>'+data.courses[course_index].name+', '+ data.courses[course_index].description+'</li>');
+      $usercourses.append(data.courses[course_index].name+', '+ data.courses[course_index].description);
+
       dagreD3.select(id);
       d3.event.stopPropagation();
     });

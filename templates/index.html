@@ -8,19 +8,20 @@
 	
 	{% load static %}
 
-	<script type = "text/javascript" src="{% static 'js/index.js' %}" ></script>
 	<link rel="stylesheet" type = "text/css" href="{% static 'css/index.css' %}"/>
 	<link rel="stylesheet" type = "text/css" href="{% static 'css/end_result.css' %}"/>
 
-
-
+	<!--JQUERY Delivery-->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></head>
 	<script src="http://wzrd.in/standalone/uuid@latest"></script>
 
 	</head>
 	<body>
-		<nav class="navbar navbar-default" style="margin-bottom: 0px;background-color: rgba(0, 191, 255, 1);">
+		<nav class="navbar navbar-default" style="margin-bottom: 0px;background-color: #337ab7;">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -54,25 +55,35 @@
 
 		 <section class="intro">
 		    <row>
-		        <div class="col-lg-6 col-sm-12 left">
+		        <div class="col-lg-8 col-sm-12 left">
 		            <div>
 		            	<svg height="100%">
 		            	</svg>
 		            </div>
 		        </div>
-		        <div class="col-lg-6 col-sm-12 right">
-		            <p>
-						<h2>Your Courses for the Year</h2>
-						<ul id = "courses">
-						</ul>
-						<!--
-						<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-						  <img src="{% static 'gif/Small.gif' %}" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
-						</div>
-
-						<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-						-->
-		            </p>
+		        <div class="col-lg-4 col-sm-12 right">
+		            <div id = "rightpanel">
+		            {% for termName in termList %}
+ 		            	<div class='panel panel-primary term-panel'>
+					  		<div class='panel-heading'>
+					  			{{ termName }}
+					  		</div>
+					  		<div class="panel-body">
+					  			<form>
+								  <div class="form-group">
+								    <input type="text" class="form-control" placeholder="Course Name">
+								  </div>
+								  <div class="form-group">
+								    <input type="text" class="form-control" placeholder="Course Name">
+								  </div>
+								  <div class="form-group">
+								    <input type="text" class="form-control" placeholder="Course Name">
+								  </div>
+								</form>
+					  		</div>
+					  	</div>
+					 {% endfor %}
+		            </div>
 		        </div>
 	      </row>
 	    </section>
@@ -80,6 +91,8 @@
 	    Go to the colleges page <a href="/colleges">here</a>
 	    -->
 	    <div id="major-id" data-id="{{ majorId }}" style="display:none"></div>
+	    <script type = "text/javascript" src="{% static 'js/index.js' %}" ></script>
 	    <script type = "text/javascript" src="{% static 'js/graph.js' %}" ></script>
+
 	</body>
 </html>
