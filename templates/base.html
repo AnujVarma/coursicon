@@ -1,0 +1,73 @@
+<html>
+	<head>
+    {% load static %}
+
+    <title>{% block title %}{% endblock %} Coursicon</title>
+
+    <!-- Global CSS Imports -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></head>
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+
+    <!-- Specific CSS imports per page -->
+    {% block css %}{% endblock %}
+
+  	<script src="http://d3js.org/d3.v3.min.js"></script>
+  	<!--v0.4.10 latest version-->
+  	<script src="http://cpettitt.github.io/project/dagre-d3/v0.4.17/dagre-d3.min.js"></script>
+
+	</head>
+	<body>
+
+    <!-- Bootstrap navbar -->
+		<nav class="navbar navbar-default" style="margin-bottom: 0px;background-color: #337ab7;">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" style = "color:white;" href="#">Coursicon</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav navbar-right">
+						{% if user.is_authenticated %}
+							<li class="nav-item {% block profileActive %}{% endblock %}">
+								<a class="nav-link" href="/profile">{{ user }}</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/accounts/logout">Logout</a>
+							</li>
+						{% else %}
+	            <li class="nav-item {% block loginActive %}{% endblock %}">
+	              <a class="nav-link" href="/accounts/login">Login</a>
+	            </li>
+	            <li class="nav-item {% block signupActive %}{% endblock %} ">
+	              <a class="nav-link" href="/register">Signup</a>
+	            </li>
+						{% endif %}
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
+    <!-- Specific content per page -->
+    <div class="main-page-container">
+      {% block content %}{% endblock %}
+    </div>
+
+    <!-- Load JS at the bottom for performance optimization -->
+    <!-- Global JS Imports -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Specific JS imports per page -->
+    {% block js %}{% endblock %}
+
+	</body>
+</html>

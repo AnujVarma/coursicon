@@ -6,14 +6,6 @@ body{
   overflow: hidden;
 }
 
-#bs-example-navbar-collapse-1 > ul > li:nth-child(1) > a{
-  color: white;
-}
-
-#bs-example-navbar-collapse-1 > ul > li.dropdown > a{
-  color: white;
-}
-
 .intro{
   height:calc(100% - 50px)
 }
@@ -35,7 +27,7 @@ body{
   color : #000000;
   box-shadow: -3px 0px 3px -1px #aaaaaa;
 }
-@media (max-width: 1200px) { 
+@media (max-width: 1200px) {
   .left{
     height:50%
   }

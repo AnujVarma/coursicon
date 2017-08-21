@@ -1,12 +1,51 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
 from django.views.generic.base import View
 
 from backend.models import *
 
 # Create your views here.
+
+class RegistrationView(View):
+	def get(self, request):
+		return render(request, "registration/registration.html", {"error": request.GET.get("error")})
+
+	def post(self, request):
+		formData = request.POST
+		username = formData.get("username")
+		firstName = formData.get("firstname")
+		lastName = formData.get("lastname")
+		email = formData.get("email")
+		password1 = formData.get("password1")
+		password2 = formData.get("password2")
+
+		# handle case where passwords don't match
+		if password1 != password2:
+			return redirect("/register/?error=passwordMismatch")
+
+		# handle case when username already exists
+		if CoursiconUser.objects.filter(username=username).exists():
+			return redirect("/register/?error=usernameExists")
+
+		# create the user
+		user = CoursiconUser(
+			username=username,
+			email=email,
+			last_name=lastName,
+			first_name=firstName)
+		user.save()
+		# setting the password because django expects a password hash
+		user.set_password(password1)
+		user.save()
+
+		# login the user and send to homepage
+		user = authenticate(username=username, password=password1)
+		login(request, user)
+		return redirect('/accounts/login')
+
 
 class HomePage(View):
 	def get(self, request):
